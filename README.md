@@ -8,3 +8,4 @@ Minimizes the following loss function using multiplicative updates:
 
 Let D be no. of documents and V be the vocab size. **X** is (D x V) data matrix. Each row is a document and each column is a feature, e.g. textual/visual word. **W** is document-topic matrix of dimension (D x K) where K is the number of topics. **H** is topic-word matrix of dimension (K x V). 
 
+The function that does the NMF is called JAL_NMF. See toy_demo.py for example usage with fake toy data with dense **X**. For real data, **X** should be a sparse matrix, e.g. scipy.sparse.csr_matrix. 
