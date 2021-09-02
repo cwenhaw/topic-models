@@ -126,7 +126,7 @@ def nmf_loss(X, W, H, l1reg):
     return loss
 
 # B not yet regularized
-def gnmf_loss(X, W, H, Y, B, l1ref, Swt):
+def gnmf_loss(X, W, H, Y, B, l1reg, Swt):
     # NMF part
     XtW = (X.transpose()).dot(W)    # V x K
     tr1_1=np.sum(inner1d(XtW, H.T))
@@ -163,7 +163,7 @@ def gnmf_loss(X, W, H, Y, B, l1ref, Swt):
     '''
     return loss
     
-def gnmf_loss_naive(X, W, H, Y, B, l1ref, Swt):
+def gnmf_loss_naive(X, W, H, Y, B, l1reg, Swt):
     WH = np.matmul(W, H)
     tr1_norm = LA.norm(np.subtract(X, WH))
     tr1 = tr1_norm * tr1_norm
@@ -215,7 +215,7 @@ def GNMF(X, Y, K, l1reg, Swt, maxIter, computeLoss):
         B = np.multiply(B, np.divide(numer, denom))
         
         if computeLoss==True:
-            loss = gnmf_loss(X, W, H, Y, B, l1ref, Swt)
+            loss = gnmf_loss(X, W, H, Y, B, l1reg, Swt)
             print(loss)
     return [W, H, B]
 
